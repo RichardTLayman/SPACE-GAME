@@ -13,5 +13,6 @@ namespace Space_Game
         Planet Earth = new Planet();
         Planet AlphaCentari3 = new Planet();
         Planet PlanetX = new Planet();
+        Planet Pluto = new Planet();
     }
 }
