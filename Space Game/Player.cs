@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Space_Game
 {
-    class Program
+    class Player
     {
-        static void Main(string[] args)
-        {
+        string CharName;
+        int CharAge = 20;
+        int Creds = 0;
 
-        }
+        Player Char = new Player();
     }
 }
