@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Space_Game
 {
-    class Player
+    public class Player
     {
-        string CharName;
-        int CharAge = 20;
-        int Creds = 0;
+        public string CharName;
+        public string Location;
+        public int CharAge = 20;
+        public int Creds = 0;
 
-        Player Char = new Player();
+        public Player()
+        {
+            Location = "Earth";
+            Creds = 1000;
+        }
     }
 }

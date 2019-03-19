@@ -10,7 +10,8 @@ namespace Space_Game
     {
         static void Main(string[] args)
         {
-
+            GAME game = new GAME();
+            game.StartGame();
         }
     }
 }

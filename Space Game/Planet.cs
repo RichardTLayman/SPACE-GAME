@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace Space_Game
 {
-    class Planet
+    public class Planet
     {
-        string PlanetName;
+        public string PlanetName;
+        public int x;
+        public int y;
 
-        Planet Earth = new Planet();
-        Planet AlphaCentari3 = new Planet();
-        Planet PlanetX = new Planet();
-        Planet Pluto = new Planet();
+        public Planet(string name, int x, int y)
+        {
+            PlanetName = name;
+            this.x = x;
+            this.y = y;
+
+        }
+
+
     }
 }

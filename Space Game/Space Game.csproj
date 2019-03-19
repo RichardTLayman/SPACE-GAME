@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations.cs" />
+    <Compile Include="GAME.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="Planet.cs" />
+    <Compile Include="PlanetHolder.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
