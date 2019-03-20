@@ -20,8 +20,9 @@ namespace Space_Game
             GameTitle();
             CharacterCreation();
             HUD();
-            MyShip.ModifiedWarpSpeed = Calc.WarpSpeed(MyShip.WarpSpeed);
-            Console.WriteLine(MyShip.ModifiedWarpSpeed);
+            double distance = Calc.MeasureDistance(0, 3, 0, 3);
+            double Warped = Calc.WarpSpeed(MyShip.WarpSpeed);
+            double Time = Calc.MeasuredTime(distance, Warped);
             Console.ReadKey();
 
             //EndGame();
@@ -71,6 +72,14 @@ namespace Space_Game
             //Need to color
         }
 
+        /*void Travel()
+        {
+            CurrentPlanet =
+            TravelPlanet =
+
+            Double Distance = Calc.MeasureDistance(CurrentPlanet x1, TravelPLanet x2, Planet y1, Planet y2);
+            Double Aged = Calc.MeasuredTime(Distance, (Calc.WarpSpeed(MyShip.WarpSpeed)));
+        }*/
 
     }
 }

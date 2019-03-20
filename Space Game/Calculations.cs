@@ -8,11 +8,16 @@ namespace Space_Game
 {
     public class Calculations
     {
-        const int SpeedOfLight = 670616629; // MPH
-                                            // Warp speed v(W) = W(10/3) + (10 − W)(-11/3)
+        const int SpeedOfLightSec = 186000;
+        const int SpeedOfLightMin = 11160000;
+        const int SpeedOfLightHour = 669600000;
+        const long SpeedOfLightDay = 16070400000;
+        const long SpeedOfLightMonth = 482112000000;
+                                            
         const long LightYear = 5880000000000000; // Unit of distance it takes light to travel in one year (5.88 trillion)
 
-        //pluto is 4.67 billion miles away from earth
+        //pluto is 4.67 billion miles away from earth. 8% of a LY.
+        // Alpha Centari 3 is 4.3 LYs away from Earth
 
         public double WarpSpeed(int WarpSpeed)
         {
@@ -30,12 +35,18 @@ namespace Space_Game
             yFinal = Math.Pow(yFinal, 2);
 
             Double Distance = Math.Sqrt(xFinal + yFinal);
-            return Distance;
+            Distance = Math.Round(Distance, 2);
+
+            Console.WriteLine("You have traveled " + Distance + " Light Years.");
+            return Distance; // compared to 1 LY
         }
 
-        void ConvertDistance(double distance)
+        public double MeasuredTime(double distance, double speed)
         {
-            
+            double Time = distance / speed;
+            Time = Math.Round(Time, 2);
+            Console.WriteLine("You are " + Time + " years older.");
+            return Time;
         }
 
        

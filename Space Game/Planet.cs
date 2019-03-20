@@ -9,10 +9,10 @@ namespace Space_Game
     public class Planet
     {
         public string PlanetName;
-        public int x;
-        public int y;
+        public double x;
+        public double y;
 
-        public Planet(string name, int x, int y)
+        public Planet(string name, double x, double y)
         {
             PlanetName = name;
             this.x = x;

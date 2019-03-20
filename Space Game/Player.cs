@@ -10,7 +10,7 @@ namespace Space_Game
     {
         public string CharName;
         public string Location;
-        public int CharAge = 20;
+        public double CharAge = 20;
         public int Creds = 0;
 
         public Player()
