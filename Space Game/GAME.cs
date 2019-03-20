@@ -10,6 +10,9 @@ namespace Space_Game
     {
         Player Created = new Player();
         Ship MyShip = new Ship();
+        Calculations Calc = new Calculations();
+
+        //double distance = Calc.MeasureDistance(0, .08, 0, .08);
 
         // This is where all the magic will happen.
         public void StartGame()
@@ -17,7 +20,8 @@ namespace Space_Game
             GameTitle();
             CharacterCreation();
             HUD();
-            
+            MyShip.ModifiedWarpSpeed = Calc.WarpSpeed(MyShip.WarpSpeed);
+            Console.WriteLine(MyShip.ModifiedWarpSpeed);
             Console.ReadKey();
 
             //EndGame();
