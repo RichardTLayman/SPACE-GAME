@@ -79,7 +79,7 @@ namespace Space_Game
             HUD();
 
             Console.WriteLine("Welcome to the shop!\n Do you wish to Buy or Sell?");
-            Console.WriteLine("To BUY: Press 1.\n To SELL: Press 2.");
+            Console.WriteLine(" To BUY: Press 1.\n To SELL: Press 2.");
 
             string input = Console.ReadLine();
 
@@ -95,7 +95,7 @@ namespace Space_Game
 
                     case "2":
 
-                        //Created.Creds += Shopping.Sell();
+                        Created.Creds += Shopping.Sell(Created.PlanetMarker);
                         break;
 
                     default:

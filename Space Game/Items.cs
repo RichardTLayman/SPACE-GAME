@@ -14,10 +14,10 @@ namespace Space_Game
         string ItemDescription;
         int ItemQuantity;
 
-        string EarthLoot = "Politicians";
-        string PlutoLoot = "Space dogs";      
-        string PlanetXLoot = "Chemical X";       
-        string AlphaCentariLoot = "Light Year Smoothies";
+        int[] EarthLoot = { 50, 150, 500, 5000 };
+        int[] PlutoLoot = { 150, 25, 1000, 3500 };      
+        int[] PlanetXLoot = { 500, 250, 125, 2500 };       
+        int[] AlphaCentariLoot = { 1000, 500, 750, 500 };
         
 
         public string[] TradingItems = { "Politicians", "Space dogs", "Chemical X", "Light Year Smoothies" };
@@ -65,10 +65,28 @@ namespace Space_Game
             
         }
 
-        /*public int Sell()
+        public int Sell(int PM)
         {
+
+            int i = PM;
+            int quantity;
+            int TotalGain = 0;
+
             Console.WriteLine("Welcome Traveller! What are you looking to sell?");
+
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies");
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine($"      {LootQTY[0]}              {LootQTY[1]}             {LootQTY[2]}                 {LootQTY[3]}");
+
+            if (PM == 0)
+            {
+                Console.WriteLine(" 50 Creds     150 creds          500 creds           10000 creds" )
+            }
+
+            Console.WriteLine(" To SELL Politicians: Press 1.\n Space dogs: Press 2.\n Chemical X: Press 3.\n Light Year Smoothies: Press 4.\n To GO BACK: Press 5.");
             Console.ReadKey();
-        }*/
+            return TotalGain;
+        }
     }
 }
