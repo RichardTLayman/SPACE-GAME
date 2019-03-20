@@ -8,9 +8,10 @@ namespace Space_Game
 {
     public class GAME
     {
-        Player Created = new Player();
+        public static Player Created = new Player();
         Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
+        Items Shopping = new Items();
         
 
         //double distance = Calc.MeasureDistance(0, .08, 0, .08);
@@ -66,17 +67,44 @@ namespace Space_Game
          void HUD()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("  ------------------------------------------------------------");
+            Console.WriteLine("  ------------------------------------------------------------     ");
             Console.WriteLine("| Char Name: " + Created.CharName + " <> Location: " + Created.Location + " <> Age: " + Created.CharAge + " <> Creds: " + Created.Creds + " |");
-            Console.WriteLine("  ------------------------------------------------------------");
+            Console.WriteLine("  ------------------------------------------------------------     ");
             Console.ResetColor();
-
-           
         }
 
         void Shop()
         {
+            Console.Clear();
+            HUD();
 
+            Console.WriteLine("Welcome to the shop!\n Do you wish to Buy or Sell?");
+            Console.WriteLine("To BUY: Press 1.\n To SELL: Press 2.");
+
+            string input = Console.ReadLine();
+
+            if (input == "1" || input == "2")
+            {
+
+                switch (input)
+                {
+                    case "1":
+
+                        Created.Creds -= Shopping.Buy(Created.PlanetMarker);
+                        break;
+
+                    case "2":
+
+                        //Created.Creds += Shopping.Sell();
+                        break;
+
+                    default:
+
+                        break;
+                }
+            }
+
+            MainSelection();
         }
 
         void Travel()
@@ -88,6 +116,7 @@ namespace Space_Game
             double CurrentY = Created.y;
 
             string planet = "";
+            int planetMarker;
             double x = 0;
             double y = 0;
 
@@ -98,24 +127,28 @@ namespace Space_Game
             if (input == "1")
             {
                 planet = PlanetHolder.Earth.PlanetName;
+                Created.PlanetMarker = PlanetHolder.Earth.PlanetMarker;
                 x = PlanetHolder.Earth.x;
                 y = PlanetHolder.Earth.y;
             }
             else if ( input == "2")
             {
                 planet = PlanetHolder.Pluto.PlanetName;
+                Created.PlanetMarker = PlanetHolder.Pluto.PlanetMarker;
                 x = PlanetHolder.Pluto.x;
                 y = PlanetHolder.Pluto.y;
             }
             else if (input == "3")
             {
                 planet = PlanetHolder.PlanetX.PlanetName;
+                Created.PlanetMarker = PlanetHolder.PlanetX.PlanetMarker;
                 x = PlanetHolder.PlanetX.x;
                 y = PlanetHolder.PlanetX.y;
             }
             else if (input == "4")
             {
                 planet = PlanetHolder.AlphaCentari3.PlanetName;
+                Created.PlanetMarker = PlanetHolder.AlphaCentari3.PlanetMarker;
                 x = PlanetHolder.AlphaCentari3.x;
                 y = PlanetHolder.AlphaCentari3.y;
             }
@@ -168,12 +201,23 @@ namespace Space_Game
 
         void Display()
         {
+            Console.Clear();
+            HUD();
 
+            Console.WriteLine("   Items              Quantity");
+            Console.WriteLine("   -----              --------");
+            Console.WriteLine($" {Shopping.TradingItems[0]}              {Shopping.LootQTY[0]}");
+            Console.WriteLine($" {Shopping.TradingItems[1]}               {Shopping.LootQTY[1]}");
+            Console.WriteLine($" {Shopping.TradingItems[2]}               {Shopping.LootQTY[2]}");
+            Console.WriteLine($" {Shopping.TradingItems[3]}     {Shopping.LootQTY[3]}");
+
+            Console.ReadKey();
+            MainSelection();
         }
 
         void MainSelection()
         {
-            string input = "";
+            string input;
 
             Console.Clear();
             HUD();
@@ -185,39 +229,38 @@ namespace Space_Game
 
             input = Console.ReadLine();
 
-            if (input == "2")
+            if (input == "1" || input == "2" || input == "3")
             {
-                Travel();
+
+                switch (input)
+                {
+                    case "1":
+
+                        Shop();
+                        break;
+
+                    case "2":
+
+                        Travel();
+                        break;
+
+                    case "3":
+
+                        Display();
+                        break;
+
+                    default:
+
+                        break;
+                }
             }
+
             else
             {
+                Console.WriteLine("Please input a proper selection!");
+                Console.ReadKey();
                 MainSelection();
             }
-
-            /*switch (input)
-            {
-                case 1:
-
-                    Shop();
-                    break;
-
-                case 2:
-
-                    Travel();
-                    break;
-
-                case 3:
-
-                    Display();
-                    break;
-
-                default:
-
-                    break;
-            }*/
-
-            
-            
 
         }
 

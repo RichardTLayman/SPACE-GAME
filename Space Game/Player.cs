@@ -10,6 +10,7 @@ namespace Space_Game
     {
         public string CharName;
         public string Location;
+        public int PlanetMarker;
         public double x = 0;
         public double y = 0;
         public double CharAge = 20;
@@ -17,6 +18,7 @@ namespace Space_Game
 
         public Player()
         {
+            PlanetMarker = 0;
             Location = "Earth";
             Creds = 1000;
         }
