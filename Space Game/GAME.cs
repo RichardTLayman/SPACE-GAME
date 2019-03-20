@@ -11,6 +11,7 @@ namespace Space_Game
         Player Created = new Player();
         Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
+        
 
         //double distance = Calc.MeasureDistance(0, .08, 0, .08);
 
@@ -20,9 +21,10 @@ namespace Space_Game
             GameTitle();
             CharacterCreation();
             HUD();
-            double distance = Calc.MeasureDistance(0, 3, 0, 3);
-            double Warped = Calc.WarpSpeed(MyShip.WarpSpeed);
-            double Time = Calc.MeasuredTime(distance, Warped);
+            MainSelection();
+            //double distance = Calc.MeasureDistance(0, 3, 0, 3);
+            //double Warped = Calc.WarpSpeed(MyShip.WarpSpeed);
+           // double Time = Calc.MeasuredTime(distance, Warped);
             Console.ReadKey();
 
             //EndGame();
@@ -69,17 +71,155 @@ namespace Space_Game
             Console.WriteLine("  ------------------------------------------------------------");
             Console.ResetColor();
 
-            //Need to color
+           
         }
 
-        /*void Travel()
+        void Shop()
         {
-            CurrentPlanet =
-            TravelPlanet =
 
-            Double Distance = Calc.MeasureDistance(CurrentPlanet x1, TravelPLanet x2, Planet y1, Planet y2);
+        }
+
+        void Travel()
+        {
+            Console.Clear();
+            HUD();
+            string CurrentPlanet = Created.Location;
+            double CurrentX = Created.x;
+            double CurrentY = Created.y;
+
+            string planet = "";
+            double x = 0;
+            double y = 0;
+
+            Console.WriteLine(" Please select the planet you which to travel to:");
+            Console.WriteLine(" For Earth: Press 1.\n For Pluto: Press 2.\n For Planet X: Press 3.\n For Alpha Centari 3: Press 4.\n To GO BACK: Press 5.");
+            string input = Console.ReadLine();
+            
+            if (input == "1")
+            {
+                planet = PlanetHolder.Earth.PlanetName;
+                x = PlanetHolder.Earth.x;
+                y = PlanetHolder.Earth.y;
+            }
+            else if ( input == "2")
+            {
+                planet = PlanetHolder.Pluto.PlanetName;
+                x = PlanetHolder.Pluto.x;
+                y = PlanetHolder.Pluto.y;
+            }
+            else if (input == "3")
+            {
+                planet = PlanetHolder.PlanetX.PlanetName;
+                x = PlanetHolder.PlanetX.x;
+                y = PlanetHolder.PlanetX.y;
+            }
+            else if (input == "4")
+            {
+                planet = PlanetHolder.AlphaCentari3.PlanetName;
+                x = PlanetHolder.AlphaCentari3.x;
+                y = PlanetHolder.AlphaCentari3.y;
+            }
+            else if (input == "5")
+            {
+                Console.WriteLine("It seems you have changed your mind!");
+                Console.ReadKey();
+                MainSelection();
+            }
+            else
+            {
+                Console.WriteLine("Please input a proper slection!");
+                Console.ReadKey();
+                Travel();
+            }
+
+            if (CurrentPlanet == planet)
+            {
+                Console.WriteLine("You are already at this planet. Please choose again!");
+                Console.ReadKey();
+                Travel();
+            }
+
+            Console.WriteLine("You wish to travel from " + CurrentPlanet + " to " + planet + ".");
+            Double Distance = Calc.MeasureDistance(Created.x, x, Created.y, y);
             Double Aged = Calc.MeasuredTime(Distance, (Calc.WarpSpeed(MyShip.WarpSpeed)));
-        }*/
+            Console.WriteLine();
+
+            Console.WriteLine("Do you wish to travel here? Y/N");
+            string YNinput = Console.ReadLine();
+            YNinput = YNinput.ToUpper();
+
+            if (YNinput == "Y")
+            {
+                Console.WriteLine("You have arrive at " + planet + ".");
+                Created.CharAge += Aged;
+                Created.Location = planet;
+                Created.x = x;
+                Created.y = y;
+                MainSelection();
+            }
+            else
+            {
+                Console.WriteLine("It seems you changed your mind.");
+                Console.ReadKey();
+                Travel();
+            }
+
+        }
+
+        void Display()
+        {
+
+        }
+
+        void MainSelection()
+        {
+            string input = "";
+
+            Console.Clear();
+            HUD();
+            Console.WriteLine();
+            Console.WriteLine(" Please make a selection:");
+            Console.WriteLine(" To SHOP, press 1:");
+            Console.WriteLine(" To TRAVEL to a new planet, Press 2:");
+            Console.WriteLine(" To DISPLAY Status and Inventory, Press 3;");
+
+            input = Console.ReadLine();
+
+            if (input == "2")
+            {
+                Travel();
+            }
+            else
+            {
+                MainSelection();
+            }
+
+            /*switch (input)
+            {
+                case 1:
+
+                    Shop();
+                    break;
+
+                case 2:
+
+                    Travel();
+                    break;
+
+                case 3:
+
+                    Display();
+                    break;
+
+                default:
+
+                    break;
+            }*/
+
+            
+            
+
+        }
 
     }
 }
