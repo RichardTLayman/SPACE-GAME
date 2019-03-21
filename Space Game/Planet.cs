@@ -8,17 +8,30 @@ namespace Space_Game
 {
     public class Planet
     {
+
+
         public string PlanetName;
-        public int PlanetMarker;
+
+        public string itemForSale;
+        public int itemPrice;
+        public int itemIndex;
+
         public double x;
         public double y;
 
-        public Planet(string name, int PM, double x, double y)
+        public int[] loot;
+
+        public Planet(string name, int PM, double x, double y, int[] loot)
         {
             PlanetName = name;
-            PlanetMarker = PM;
+
+            itemForSale = Items.TradingItems[PM];
+            itemPrice = Items.TradingPrices[PM];
+            itemIndex = PM;
+
             this.x = x;
             this.y = y;
+            this.loot = loot;
 
         }
 

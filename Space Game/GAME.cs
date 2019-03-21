@@ -8,27 +8,28 @@ namespace Space_Game
 {
     public class GAME
     {
-        public static Player Created = new Player();
+        public Player Created = new Player();
         Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
         public static Items Shopping = new Items();
+
+        static bool Run = true;
+        static bool BadMoneyEnd = false;
+        static bool GoodMoneyEnd = false;
+        static bool AgedOut = false;
         
-
-        //double distance = Calc.MeasureDistance(0, .08, 0, .08);
-
         // This is where all the magic will happen.
         public void StartGame()
         {
             GameTitle();
             CharacterCreation();
-            HUD();
-            MainSelection();
-            //double distance = Calc.MeasureDistance(0, 3, 0, 3);
-            //double Warped = Calc.WarpSpeed(MyShip.WarpSpeed);
-           // double Time = Calc.MeasuredTime(distance, Warped);
-            Console.ReadKey();
+            HUD(Created);
 
-            //EndGame();
+            while (Run == true)
+            {
+                MainSelection();
+            }
+            EndGame();
         }
 
         void GameTitle()
@@ -64,19 +65,19 @@ namespace Space_Game
             Console.Clear();
         }
 
-        public static void HUD()
+        public static void HUD(Player player)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("  ------------------------------------------------------------     ");
-            Console.WriteLine("| Char Name: " + Created.CharName + " <> Location: " + Created.Location + " <> Age: " + Created.CharAge + " <> Creds: " + Created.Creds + " |");
-            Console.WriteLine("  ------------------------------------------------------------     ");
+            Console.WriteLine("  -----------------------------------------------------------------     ");
+            Console.WriteLine("| Char Name: " + player.CharName + " <> Location: " + player.planet.PlanetName + " <> Age: " + player.CharAge + " <> Creds: " + player.Creds + " |");
+            Console.WriteLine("  -----------------------------------------------------------------     ");
             Console.ResetColor();
         }
 
         void Shop()
         {
             Console.Clear();
-            HUD();
+            HUD(Created);
 
             Console.WriteLine("Welcome to the shop!\n Do you wish to Buy or Sell?");
             Console.WriteLine(" To BUY: Press 1.\n To SELL: Press 2.");
@@ -85,17 +86,16 @@ namespace Space_Game
 
             if (input == "1" || input == "2")
             {
-
                 switch (input)
                 {
                     case "1":
 
-                        Created.Creds -= Shopping.Buy(Created.PlanetMarker);
+                        Created.Creds -= Shopping.Buy(Created);
                         break;
 
                     case "2":
 
-                        Created.Creds += Shopping.Sell(Created.PlanetMarker);
+                        Created.Creds += Shopping.Sell(Created);
                         break;
 
                     default:
@@ -110,13 +110,12 @@ namespace Space_Game
         void Travel()
         {
             Console.Clear();
-            HUD();
-            string CurrentPlanet = Created.Location;
+            HUD(Created);
+
+            Planet CurrentPlanet = Created.planet;
             double CurrentX = Created.x;
             double CurrentY = Created.y;
-
-            string planet = "";
-            int planetMarker;
+            
             double x = 0;
             double y = 0;
 
@@ -126,29 +125,25 @@ namespace Space_Game
             
             if (input == "1")
             {
-                planet = PlanetHolder.Earth.PlanetName;
-                Created.PlanetMarker = PlanetHolder.Earth.PlanetMarker;
+                Created.planet = PlanetHolder.Earth;
                 x = PlanetHolder.Earth.x;
                 y = PlanetHolder.Earth.y;
             }
             else if ( input == "2")
             {
-                planet = PlanetHolder.Pluto.PlanetName;
-                Created.PlanetMarker = PlanetHolder.Pluto.PlanetMarker;
+                Created.planet = PlanetHolder.Pluto;
                 x = PlanetHolder.Pluto.x;
                 y = PlanetHolder.Pluto.y;
             }
             else if (input == "3")
             {
-                planet = PlanetHolder.PlanetX.PlanetName;
-                Created.PlanetMarker = PlanetHolder.PlanetX.PlanetMarker;
+                Created.planet = PlanetHolder.PlanetX;
                 x = PlanetHolder.PlanetX.x;
                 y = PlanetHolder.PlanetX.y;
             }
             else if (input == "4")
             {
-                planet = PlanetHolder.AlphaCentari3.PlanetName;
-                Created.PlanetMarker = PlanetHolder.AlphaCentari3.PlanetMarker;
+                Created.planet = PlanetHolder.AlphaCentari3;
                 x = PlanetHolder.AlphaCentari3.x;
                 y = PlanetHolder.AlphaCentari3.y;
             }
@@ -165,14 +160,14 @@ namespace Space_Game
                 Travel();
             }
 
-            if (CurrentPlanet == planet)
+            if (CurrentPlanet == Created.planet)
             {
                 Console.WriteLine("You are already at this planet. Please choose again!");
                 Console.ReadKey();
                 Travel();
             }
 
-            Console.WriteLine("You wish to travel from " + CurrentPlanet + " to " + planet + ".");
+            Console.WriteLine("You wish to travel from " + CurrentPlanet.PlanetName + " to " + Created.planet.PlanetName + ".");
             Double Distance = Calc.MeasureDistance(Created.x, x, Created.y, y);
             Double Aged = Calc.MeasuredTime(Distance, (Calc.WarpSpeed(MyShip.WarpSpeed)));
             Console.WriteLine();
@@ -183,9 +178,8 @@ namespace Space_Game
 
             if (YNinput == "Y")
             {
-                Console.WriteLine("You have arrive at " + planet + ".");
+                Console.WriteLine("You have arrive at " + Created.planet.PlanetName + ".");
                 Created.CharAge += Aged;
-                Created.Location = planet;
                 Created.x = x;
                 Created.y = y;
                 MainSelection();
@@ -202,14 +196,14 @@ namespace Space_Game
         void Display()
         {
             Console.Clear();
-            HUD();
+            HUD(Created);
 
             Console.WriteLine("   Items              Quantity");
             Console.WriteLine("   -----              --------");
-            Console.WriteLine($" {Shopping.TradingItems[0]}              {Shopping.LootQTY[0]}");
-            Console.WriteLine($" {Shopping.TradingItems[1]}               {Shopping.LootQTY[1]}");
-            Console.WriteLine($" {Shopping.TradingItems[2]}               {Shopping.LootQTY[2]}");
-            Console.WriteLine($" {Shopping.TradingItems[3]}     {Shopping.LootQTY[3]}");
+            Console.WriteLine($" {Items.TradingItems[0]}              {Shopping.LootQTY[0]}");
+            Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}");
+            Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}");
+            Console.WriteLine($" {Items.TradingItems[3]}     {Shopping.LootQTY[3]}");
 
             Console.ReadKey();
             MainSelection();
@@ -220,7 +214,37 @@ namespace Space_Game
             string input;
 
             Console.Clear();
-            HUD();
+            HUD(Created);
+
+            // Run out of Money ending
+            if (Created.Creds <= 0 && Shopping.LootQTY[0] <= 0 && Shopping.LootQTY[1] <= 0 && Shopping.LootQTY[2] <= 0 && Shopping.LootQTY[3] <= 0)
+            {
+                Run = false;
+                BadMoneyEnd = true;
+                return;
+            }
+
+            // Fortune Good ending
+            if (Created.Creds >= 100000)
+            {
+                Run = false;
+                GoodMoneyEnd = true;
+                return;
+            }
+
+            // Aged out ending
+            if ( Created.CharAge >= 70)
+            {
+                Run = false;
+                AgedOut = true;
+                return;
+            }
+
+            if (Created.Creds < 0)
+            {
+                Created.Creds = 0;
+            }
+
             Console.WriteLine();
             Console.WriteLine(" Please make a selection:");
             Console.WriteLine(" To SHOP, press 1:");
@@ -228,6 +252,8 @@ namespace Space_Game
             Console.WriteLine(" To DISPLAY Status and Inventory, Press 3;");
 
             input = Console.ReadLine();
+
+           
 
             if (input == "1" || input == "2" || input == "3")
             {
@@ -259,9 +285,39 @@ namespace Space_Game
             {
                 Console.WriteLine("Please input a proper selection!");
                 Console.ReadKey();
-                MainSelection();
+                
             }
 
+        }
+
+        void EndGame()
+        {
+            if (BadMoneyEnd == true)
+            {
+                Console.WriteLine("You have run out of money!");
+                Console.WriteLine("GAME OVER!!!");
+                Console.ReadKey();
+
+            }
+            else if (GoodMoneyEnd == true)
+            {
+                Console.WriteLine(" Congratulations!!!");
+                Console.WriteLine(" You have amassed quite the fortune!");
+                Console.WriteLine(" Enjoy your retirement!");
+                Console.ReadKey();
+            }
+            else if (AgedOut == true)
+            {
+                Console.WriteLine(" You are much to old to continue.");
+                Console.WriteLine(" While it is not enough to retire comfortably, you did make some money.");
+                Console.WriteLine($" Current Creds = {Created.Creds}.");
+                Console.ReadKey();
+            }
+            else 
+            {
+                Run = true;
+                MainSelection();
+            }
         }
 
     }
