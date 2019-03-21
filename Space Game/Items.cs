@@ -30,9 +30,13 @@ namespace Space_Game
             int i = PM;
             int quantity;
             int totalCost;
-           
+
+            Console.Clear();
+            GAME.HUD();
+
+            Console.WriteLine();
             Console.WriteLine("Welcome traveller! We currently sell " + TradingItems[i] + ".");
-            Console.WriteLine($"So {TradingItems[i]} will cost you  {TradingPrices[i]}.");
+            Console.WriteLine($"{TradingItems[i]} will cost you {TradingPrices[i]} per item.");
             Console.WriteLine("How many do you wish to buy?");
             quantity = Convert.ToInt32(Console.ReadLine());
             totalCost = quantity * TradingPrices[i];
@@ -72,19 +76,59 @@ namespace Space_Game
             int quantity;
             int TotalGain = 0;
 
+            Console.Clear();
+            GAME.HUD();
+
+            Console.WriteLine();
             Console.WriteLine("Welcome Traveller! What are you looking to sell?");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("                     Your Current Inventory ");
+            Console.ResetColor();
 
             Console.WriteLine("---------------------------------------------------------------");
             Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies");
             Console.WriteLine("---------------------------------------------------------------");
             Console.WriteLine($"      {LootQTY[0]}              {LootQTY[1]}             {LootQTY[2]}                 {LootQTY[3]}");
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("               I will buy the items for this much: ");
+            Console.ResetColor();
+
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies");
+            Console.WriteLine("---------------------------------------------------------------");
+            
+            
 
             if (PM == 0)
             {
-                Console.WriteLine(" 50 Creds     150 creds          500 creds           10000 creds" )
+                Console.WriteLine($"      {EarthLoot[0]}            {EarthLoot[1]}           {EarthLoot[2]}              {EarthLoot[3]}");
+                Console.WriteLine();
+            }
+            else if (PM == 1)
+            {
+                Console.WriteLine($"      {PlutoLoot[0]}            {PlutoLoot[1]}           {PlutoLoot[2]}              {PlutoLoot[3]}");
+                Console.WriteLine();
+            }
+            else if (PM == 2)
+            {
+                Console.WriteLine(PlanetXLoot);
+            }
+            else if (PM == 3)
+            {
+                Console.WriteLine(AlphaCentariLoot);
             }
 
             Console.WriteLine(" To SELL Politicians: Press 1.\n Space dogs: Press 2.\n Chemical X: Press 3.\n Light Year Smoothies: Press 4.\n To GO BACK: Press 5.");
+
+            string input = Console.ReadLine();
+
+
+
+
             Console.ReadKey();
             return TotalGain;
         }

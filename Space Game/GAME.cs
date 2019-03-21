@@ -11,7 +11,7 @@ namespace Space_Game
         public static Player Created = new Player();
         Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
-        Items Shopping = new Items();
+        public static Items Shopping = new Items();
         
 
         //double distance = Calc.MeasureDistance(0, .08, 0, .08);
@@ -64,7 +64,7 @@ namespace Space_Game
             Console.Clear();
         }
 
-         void HUD()
+        public static void HUD()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("  ------------------------------------------------------------     ");
