@@ -8,7 +8,8 @@ namespace Space_Game
 {
     class RandomEvents
     {
-        int[] Events = { };
+        int[] AgeEvents = { };
+        int[] MoneyEvents = { };
         //Random EventRandom = new Random();
         //int num = EventRandom.Next(100);
 
@@ -19,5 +20,11 @@ namespace Space_Game
             "A raiding ship appears out warp before you.",
 
         };
+
+        public int AgeEvent()
+        {
+            int newAge = 0;
+            return newAge;
+        }
     }
 }

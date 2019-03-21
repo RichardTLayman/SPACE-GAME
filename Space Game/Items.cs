@@ -13,7 +13,7 @@ namespace Space_Game
 
         public int[] LootQTY = { 0, 0, 0, 0 };
         //string[] ShipUpgrades = { "Engine", "Cargohold", "Sensors", "Weapons Systems", };
-
+ 
         public int Buy(Player player)
         {
             int quantity;
@@ -146,6 +146,71 @@ namespace Space_Game
 
             Console.ReadKey();
             return TotalGain;
+        }
+
+        public void Mechanic(Ship ship, Player player)
+        {
+            int WarpEngineCost = 50000 * ship.WarpSpeed;
+            int WeaponCost = 25000 * ship.WarpSpeed;
+            int SensorCost = 25000 * ship.Sensors;
+
+            Console.Clear();
+            GAME.HUD(player);
+
+            Console.WriteLine("Looking for an upgrade? You came to the right place.");
+            Console.WriteLine();
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine($" Level {ship.WarpSpeed} Warp Engines     Level {ship.Weapons} Weapon Systems     Level {ship.Sensors} Sensor Array");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine();
+            Console.WriteLine(" For Warp Engines: Press 1.\n For Sensors: Press 2.\n For Weapon Systems: Press 3.");
+            Console.WriteLine();
+            string input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                Console.WriteLine("A better Warp Engine will let you travel to places faster.");
+                    if (ship.WarpSpeed < 9)
+                {
+                    Console.WriteLine($"It will cost you {WarpEngineCost} Creds to upgrade to Level {ship.WarpSpeed + 1}.");
+                    Console.WriteLine("Do you wish to upgrade? Y/N?");
+                    string YN = Console.ReadLine();
+                    YN = YN.ToUpper();
+
+                    if (YN == "Y")
+                    {
+                        Console.Clear();
+                        GAME.HUD(player);
+
+                        player.Creds -= WarpEngineCost;
+                        ship.WarpSpeed += ship.WarpSpeed;
+                        
+                        Console.WriteLine($"You have upgraded your Warp Engines to Level {ship.WarpSpeed}.");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("It seems you changed your mind.");
+                        Console.ReadKey();
+                        
+                    }
+
+                }
+            }
+            else if (input == "2")
+            {
+
+            }
+            else if (input == "3")
+            {
+
+            }
+            else
+            {
+                Console.WriteLine(" Please input a proper selection!");
+                Console.ReadKey();
+                Mechanic(ship, player);
+            }
         }
     }
 }

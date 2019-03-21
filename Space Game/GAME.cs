@@ -9,7 +9,7 @@ namespace Space_Game
     public class GAME
     {
         public Player Created = new Player();
-        Ship MyShip = new Ship();
+        public Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
         public static Items Shopping = new Items();
 
@@ -80,11 +80,11 @@ namespace Space_Game
             HUD(Created);
 
             Console.WriteLine("Welcome to the shop!\n Do you wish to Buy or Sell?");
-            Console.WriteLine(" To BUY: Press 1.\n To SELL: Press 2.");
+            Console.WriteLine(" To BUY: Press 1.\n To SELL: Press 2.\n MECHANIC: Press 3.");
 
             string input = Console.ReadLine();
 
-            if (input == "1" || input == "2")
+            if (input == "1" || input == "2" || input == "3")
             {
                 switch (input)
                 {
@@ -96,6 +96,11 @@ namespace Space_Game
                     case "2":
 
                         Created.Creds += Shopping.Sell(Created);
+                        break;
+
+                    case "3":
+
+                        Shopping.Mechanic(MyShip, Created);
                         break;
 
                     default:
@@ -198,11 +203,11 @@ namespace Space_Game
             Console.Clear();
             HUD(Created);
 
-            Console.WriteLine("   Items              Quantity");
-            Console.WriteLine("   -----              --------");
-            Console.WriteLine($" {Items.TradingItems[0]}              {Shopping.LootQTY[0]}");
-            Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}");
-            Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}");
+            Console.WriteLine($"   Items              Quantity           {MyShip.ShipName} Equipment");
+            Console.WriteLine("   -----              --------              ------------");
+            Console.WriteLine($" {Items.TradingItems[0]}              {Shopping.LootQTY[0]}            Level {MyShip.WarpSpeed} Warp Engine");
+            Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}           Level {MyShip.Weapons} Weapon Systems");
+            Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}           Level {MyShip.Sensors} Sensor Systems");
             Console.WriteLine($" {Items.TradingItems[3]}     {Shopping.LootQTY[3]}");
 
             Console.ReadKey();
@@ -225,7 +230,7 @@ namespace Space_Game
             }
 
             // Fortune Good ending
-            if (Created.Creds >= 100000)
+            if (Created.Creds >= 100000000)
             {
                 Run = false;
                 GoodMoneyEnd = true;

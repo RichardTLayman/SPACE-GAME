@@ -13,12 +13,16 @@ namespace Space_Game
         public double y = 0;
         public double CharAge = 20;
         public int Creds = 0;
+        public int Luck;
 
         public Planet planet = PlanetHolder.Earth;
 
         public Player()
         {
-            Creds = 1000;
+            Creds = 100000;
+            Luck = 1;
         }
+
+        
     }
 }
