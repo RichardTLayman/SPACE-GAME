@@ -212,8 +212,8 @@ namespace Space_Game
             Console.WriteLine($"   Items              Quantity           {MyShip.ShipName}'s Equipment");
             Console.WriteLine("   -----              --------              ------------");
             Console.WriteLine($" {Items.TradingItems[0]}              {Shopping.LootQTY[0]}            Level {MyShip.WarpSpeed} Warp Engine");
-            Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}           Level {MyShip.Weapons} Weapon Systems");
-            Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}           Level {MyShip.Sensors} Sensor Systems");
+            Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}           Level {MyShip.Sensors} Sensor Systems");
+            Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}           Level {MyShip.Weapons} Weapon Systems");
             Console.WriteLine($" {Items.TradingItems[3]}     {Shopping.LootQTY[3]}");
             Console.WriteLine($" {Items.TradingItems[4]}               {Shopping.LootQTY[4]}");
 

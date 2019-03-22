@@ -150,9 +150,9 @@ namespace Space_Game
 
         public void Mechanic(Ship ship, Player player)
         {
-            int WarpEngineCost = 50000 * ship.WarpSpeed;
-            int WeaponCost = 25000 * ship.WarpSpeed;
-            int SensorCost = 25000 * ship.Sensors;
+            int WarpEngineCost = 100000 * ship.WarpSpeed;
+            int WeaponCost = 75000 * ship.WarpSpeed;
+            int SensorCost = 75000 * ship.Sensors;
 
             Console.Clear();
             GAME.HUD(player, ship);
@@ -160,17 +160,21 @@ namespace Space_Game
             Console.WriteLine("Looking for an upgrade? You came to the right place.");
             Console.WriteLine();
             Console.WriteLine("--------------------------------------------------------------------------");
-            Console.WriteLine($" Level {ship.WarpSpeed} Warp Engines     Level {ship.Weapons} Weapon Systems     Level {ship.Sensors} Sensor Array");
+            Console.WriteLine($" Level {ship.WarpSpeed} Warp Engines     Level {ship.Sensors} Sensor Array     Level {ship.Weapons} Weapon Systems");
             Console.WriteLine("--------------------------------------------------------------------------");
             Console.WriteLine();
             Console.WriteLine(" For Warp Engines: Press 1.\n For Sensors: Press 2.\n For Weapon Systems: Press 3.");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(" A better Warp Engine will let you travel to places faster.");
+            Console.WriteLine(" Better Sensors will help you detect possible threats and navigate through rough space.");
+            Console.WriteLine(" Better weapons will help you defeat pirates and mitigate incoming objects");
+            Console.ResetColor();
             string input = Console.ReadLine();
 
             if (input == "1")
             {
-                Console.WriteLine("A better Warp Engine will let you travel to places faster.");
-                    if (ship.WarpSpeed < 9)
+                if (ship.WarpSpeed < 9)
                 {
                     Console.WriteLine($"It will cost you {WarpEngineCost} Creds to upgrade to Level {ship.WarpSpeed + 1}.");
                     Console.WriteLine("Do you wish to upgrade? Y/N?");
@@ -179,14 +183,22 @@ namespace Space_Game
 
                     if (YN == "Y")
                     {
-                        Console.Clear();
-                        GAME.HUD(player, ship);
 
-                        player.Creds -= WarpEngineCost;
-                        ship.WarpSpeed += ship.WarpSpeed;
-                        
-                        Console.WriteLine($"You have upgraded your Warp Engines to Level {ship.WarpSpeed}.");
+                        if (WarpEngineCost > player.Creds)
+                        {
+                            Console.WriteLine($"HEY! What do you think you are doing? You do not have enough Creds. Come back when you do!");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            GAME.HUD(player, ship);
 
+                            player.Creds -= WarpEngineCost;
+                            ship.WarpSpeed += 1;
+
+                            Console.WriteLine($"You have upgraded your Warp Engines to Level {ship.WarpSpeed}.");
+                        }
                     }
                     else
                     {
@@ -194,16 +206,94 @@ namespace Space_Game
                         Console.ReadKey();
                         
                     }
-
+                }
+                else
+                {
+                    Console.WriteLine("Your sensors are at max level.");
+                    Console.ReadKey();
                 }
             }
             else if (input == "2")
             {
+                if (ship.Sensors < 3)
+                {
+                    Console.WriteLine($"It will cost you {SensorCost} Creds to upgrade to Level {ship.Sensors + 1}.");
+                    Console.WriteLine("Do you wish to upgrade? Y/N?");
+                    string YN = Console.ReadLine();
+                    YN = YN.ToUpper();
 
+                    if (YN == "Y")
+                    {
+
+                        if (SensorCost > player.Creds)
+                        {
+                            Console.WriteLine($"HEY! What do you think you are doing? You do not have enough Creds. Come back when you do!");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            GAME.HUD(player, ship);
+
+                            player.Creds -= SensorCost;
+                            ship.Sensors += 1;
+
+                            Console.WriteLine($"You have upgraded your Sensor Array to Level {ship.Sensors}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("It seems you changed your mind.");
+                        Console.ReadKey();
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Your engine is at max level.");
+                    Console.ReadKey();
+                }
             }
             else if (input == "3")
             {
+                if (ship.Weapons < 3)
+                {
+                    Console.WriteLine($"It will cost you {WeaponCost} Creds to upgrade to Level {ship.Weapons + 1}.");
+                    Console.WriteLine("Do you wish to upgrade? Y/N?");
+                    string YN = Console.ReadLine();
+                    YN = YN.ToUpper();
 
+                    if (YN == "Y")
+                    {
+
+                        if (WeaponCost > player.Creds)
+                        {
+                            Console.WriteLine($"HEY! What do you think you are doing? You do not have enough Creds. Come back when you do!");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            GAME.HUD(player, ship);
+
+                            player.Creds -= WeaponCost;
+                            ship.Weapons += 1;
+
+                            Console.WriteLine($"You have upgraded your Weapon Systems to Level {ship.Weapons}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("It seems you changed your mind.");
+                        Console.ReadKey();
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Your weapons systems are at max level.");
+                    Console.ReadKey();
+                }
             }
             else
             {
