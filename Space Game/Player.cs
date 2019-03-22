@@ -19,8 +19,8 @@ namespace Space_Game
 
         public Player()
         {
-            Creds = 100000;
-            Luck = 15;
+            Creds = 10000;
+            Luck = 35;
         }
 
         

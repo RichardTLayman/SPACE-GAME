@@ -22,9 +22,9 @@ namespace Space_Game
             WarpSpeed = 1;
         }
 
-        public int Luck(int Sensor, int Weapons)
+        public static int Luck(int Sensor, int Weapons)
         {
-            int luck = (Sensor * 10) + (Weapons * 10);
+            int luck = (Sensor * 10) + (Weapons * 10) + 15;
             return luck;
         }
 

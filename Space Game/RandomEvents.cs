@@ -8,10 +8,14 @@ namespace Space_Game
 {
     class RandomEvents
     {
-        int[] AgeEvents = { };
-        int[] MoneyEvents = { };
-        //Random EventRandom = new Random();
-        //int num = EventRandom.Next(100);
+        Random Choice = new Random();
+        Random Event = new Random();
+
+        string[] AgeDesc =
+        {
+            "While travelling to your next destination, a wormhole appears before your ship.",
+
+        };
 
         string[] EventDescription = 
         {
@@ -21,10 +25,51 @@ namespace Space_Game
 
         };
 
-        public int AgeEvent()
+        public void TravelEvent(int luck)
         {
-            int newAge = 0;
-            return newAge;
+            int Choices = Choice.Next(1,4);
+            int RanNum = Event.Next(1,101);
+            
+            if (RanNum <= 50)
+            { 
+                switch (Choices)
+                {
+                    case 1:
+
+                        AgeEvent(luck);
+                        break;
+
+                    case 2:
+
+                        CredsEvent(luck);
+                        break;
+
+                    case 3:
+
+                        PirateEvent(luck);
+                        break;
+                }
+            }
+        }
+
+        void AgeEvent(int luck2)
+        {
+            int RanNum = Event.Next(1, 101);
+
+            if (RanNum <=25)
+                {
+                    Console.WriteLine(AgeDesc[0]);
+                }
+        }
+
+        void CredsEvent(int luck2)
+        {
+
+        }
+
+        void PirateEvent(int luck2)
+        {
+
         }
     }
 }

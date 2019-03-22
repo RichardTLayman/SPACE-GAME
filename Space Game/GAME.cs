@@ -53,6 +53,7 @@ namespace Space_Game
             Console.ResetColor();
             Console.WriteLine("Press enter to start");
             Console.ReadKey();
+            Console.Beep();
             Console.Clear();
         }
 
@@ -101,6 +102,9 @@ namespace Space_Game
                     case "3":
 
                         Shopping.Mechanic(MyShip, Created);
+                        Created.Luck = Ship.Luck(MyShip.Sensors, MyShip.Weapons);
+                        //Console.WriteLine(Created.Luck);
+                        //Console.ReadKey();
                         break;
 
                     default:
@@ -318,6 +322,38 @@ namespace Space_Game
                 Console.WriteLine(" Congratulations!!!");
                 Console.WriteLine(" You have amassed quite the fortune!");
                 Console.WriteLine(" Enjoy your retirement!");
+                string EndTitle = @"
+
+
+    /$$             /$$             /$$             /$$             /$$             /$$             /$$         
+  /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$       
+ /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$      
+| $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      
+|  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       
+ \____  $$       \____  $$       \____  $$       \____  $$       \____  $$       \____  $$       \____  $$      
+ /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$      
+|  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      
+ \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/       
+   \__/            \__/            \__/            \__/            \__/            \__/            \__/         
+                                                                                                                
+          /$$             /$$             /$$             /$$             /$$             /$$             /$$   
+        /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$ 
+       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$
+      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/      | $$  \__/
+      |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$ 
+       \____  $$       \____  $$       \____  $$       \____  $$       \____  $$       \____  $$       \____  $$
+       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$       /$$  \ $$
+      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/
+       \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/        \_  $$_/ 
+         \__/            \__/            \__/            \__/            \__/            \__/            \__/   
+                                                                                                               
+";
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(EndTitle);
+                Console.ResetColor();
+
+
+
                 Console.ReadKey();
             }
             else if (AgedOut == true)
