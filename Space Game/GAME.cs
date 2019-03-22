@@ -23,7 +23,7 @@ namespace Space_Game
         {
             GameTitle();
             CharacterCreation();
-            HUD(Created);
+            HUD(Created, MyShip);
 
             while (Run == true)
             {
@@ -65,19 +65,19 @@ namespace Space_Game
             Console.Clear();
         }
 
-        public static void HUD(Player player)
+        public static void HUD(Player player, Ship ship)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("  -----------------------------------------------------------------     ");
-            Console.WriteLine("| Char Name: " + player.CharName + " <> Location: " + player.planet.PlanetName + " <> Age: " + player.CharAge + " <> Creds: " + player.Creds + " |");
-            Console.WriteLine("  -----------------------------------------------------------------     ");
+            Console.WriteLine("  ------------------------------------------------------------------------");
+            Console.WriteLine("| Name: " + player.CharName + " <> Ship: " + ship.ShipName + " <> Location: " + player.planet.PlanetName + " <> Age: " + player.CharAge + " <> Creds: " + player.Creds + " |");
+            Console.WriteLine("  ------------------------------------------------------------------------");
             Console.ResetColor();
         }
 
         void Shop()
         {
             Console.Clear();
-            HUD(Created);
+            HUD(Created, MyShip);
 
             Console.WriteLine("Welcome to the shop!\n Do you wish to Buy or Sell?");
             Console.WriteLine(" To BUY: Press 1.\n To SELL: Press 2.\n MECHANIC: Press 3.");
@@ -90,12 +90,12 @@ namespace Space_Game
                 {
                     case "1":
 
-                        Created.Creds -= Shopping.Buy(Created);
+                        Created.Creds -= Shopping.Buy(Created, MyShip);
                         break;
 
                     case "2":
 
-                        Created.Creds += Shopping.Sell(Created);
+                        Created.Creds += Shopping.Sell(Created, MyShip);
                         break;
 
                     case "3":
@@ -115,7 +115,7 @@ namespace Space_Game
         void Travel()
         {
             Console.Clear();
-            HUD(Created);
+            HUD(Created, MyShip);
 
             Planet CurrentPlanet = Created.planet;
             double CurrentX = Created.x;
@@ -125,7 +125,7 @@ namespace Space_Game
             double y = 0;
 
             Console.WriteLine(" Please select the planet you which to travel to:");
-            Console.WriteLine(" For Earth: Press 1.\n For Pluto: Press 2.\n For Planet X: Press 3.\n For Alpha Centari 3: Press 4.\n To GO BACK: Press 5.");
+            Console.WriteLine(" For Earth: Press 1.\n For Pluto: Press 2.\n For Planet X: Press 3.\n For Alpha Centari 3: Press 4.\n For Gliese 7: Press 5.\n To GO BACK: Press 6.");
             string input = Console.ReadLine();
             
             if (input == "1")
@@ -154,6 +154,12 @@ namespace Space_Game
             }
             else if (input == "5")
             {
+                Created.planet = PlanetHolder.Gliese7;
+                x = PlanetHolder.Gliese7.x;
+                y = PlanetHolder.Gliese7.y;
+            }
+            else if (input == "6")
+            {
                 Console.WriteLine("It seems you have changed your mind!");
                 Console.ReadKey();
                 MainSelection();
@@ -174,7 +180,7 @@ namespace Space_Game
 
             Console.WriteLine("You wish to travel from " + CurrentPlanet.PlanetName + " to " + Created.planet.PlanetName + ".");
             Double Distance = Calc.MeasureDistance(Created.x, x, Created.y, y);
-            Double Aged = Calc.MeasuredTime(Distance, (Calc.WarpSpeed(MyShip.WarpSpeed)));
+            Double Aged = Calc.MeasuredTime(Distance, (Calc.WarpSpeed(MyShip.WarpSpeed)), MyShip);
             Console.WriteLine();
 
             Console.WriteLine("Do you wish to travel here? Y/N");
@@ -201,15 +207,18 @@ namespace Space_Game
         void Display()
         {
             Console.Clear();
-            HUD(Created);
+            HUD(Created, MyShip);
 
-            Console.WriteLine($"   Items              Quantity           {MyShip.ShipName} Equipment");
+            Console.WriteLine($"   Items              Quantity           {MyShip.ShipName}'s Equipment");
             Console.WriteLine("   -----              --------              ------------");
             Console.WriteLine($" {Items.TradingItems[0]}              {Shopping.LootQTY[0]}            Level {MyShip.WarpSpeed} Warp Engine");
             Console.WriteLine($" {Items.TradingItems[1]}               {Shopping.LootQTY[1]}           Level {MyShip.Weapons} Weapon Systems");
             Console.WriteLine($" {Items.TradingItems[2]}               {Shopping.LootQTY[2]}           Level {MyShip.Sensors} Sensor Systems");
             Console.WriteLine($" {Items.TradingItems[3]}     {Shopping.LootQTY[3]}");
+            Console.WriteLine($" {Items.TradingItems[4]}               {Shopping.LootQTY[4]}");
 
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue:");
             Console.ReadKey();
             MainSelection();
         }
@@ -219,10 +228,10 @@ namespace Space_Game
             string input;
 
             Console.Clear();
-            HUD(Created);
+            HUD(Created, MyShip);
 
             // Run out of Money ending
-            if (Created.Creds <= 0 && Shopping.LootQTY[0] <= 0 && Shopping.LootQTY[1] <= 0 && Shopping.LootQTY[2] <= 0 && Shopping.LootQTY[3] <= 0)
+            if (Created.Creds <= 0 && Shopping.LootQTY[0] <= 0 && Shopping.LootQTY[1] <= 0 && Shopping.LootQTY[2] <= 0 && Shopping.LootQTY[3] <= 0 && Shopping.LootQTY[4] <= 0)
             {
                 Run = false;
                 BadMoneyEnd = true;

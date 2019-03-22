@@ -8,19 +8,19 @@ namespace Space_Game
 {
     public class Items
     {
-        public static readonly string[] TradingItems = { "Politicians", "Space dogs", "Chemical X", "Light Year Smoothies" };
-        public static readonly int[] TradingPrices = { 100, 50, 250, 1000 };
+        public static readonly string[] TradingItems = { "Politicians", "Space dogs", "Chemical X", "Light Year Smoothies", "Adamantium" };
+        public static readonly int[] TradingPrices = { 100, 50, 250, 1000, 5000};
 
-        public int[] LootQTY = { 0, 0, 0, 0 };
+        public int[] LootQTY = { 0, 0, 0, 0, 0 };
         //string[] ShipUpgrades = { "Engine", "Cargohold", "Sensors", "Weapons Systems", };
  
-        public int Buy(Player player)
+        public int Buy(Player player, Ship ship)
         {
             int quantity;
             int totalCost;
 
             Console.Clear();
-            GAME.HUD(player);
+            GAME.HUD(player, ship);
 
             Console.WriteLine();
             Console.WriteLine("Welcome traveller! We currently sell " + player.planet.itemForSale + ".");
@@ -57,14 +57,14 @@ namespace Space_Game
 
         }
 
-        public int Sell(Player player)
+        public int Sell(Player player, Ship ship)
         {
             int TotalGain = 0;
 
             var planet = player.planet;
 
             Console.Clear();
-            GAME.HUD(player);
+            GAME.HUD(player, ship);
 
             Console.WriteLine();
             Console.WriteLine("Welcome Traveller! What are you looking to sell?");
@@ -74,27 +74,27 @@ namespace Space_Game
             Console.WriteLine("                     Your Current Inventory ");
             Console.ResetColor();
 
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies");
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine($"      {LootQTY[0]}              {LootQTY[1]}             {LootQTY[2]}                 {LootQTY[3]}");
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies <> Adamantium");
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine($"      {LootQTY[0]}              {LootQTY[1]}             {LootQTY[2]}                 {LootQTY[3]}                 {LootQTY[4]}");
             Console.WriteLine();
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("               I will buy the items for this much: ");
             Console.ResetColor();
 
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies");
-            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine(" Politicians <> Space dogs <> Chemical X <> Light Year Smoothies <> Adamantium");
+            Console.WriteLine("-------------------------------------------------------------------------");
 
 
 
 
-            Console.WriteLine($"      {planet.loot[0]}            {planet.loot[1]}           {planet.loot[2]}              {planet.loot[3]}");
+            Console.WriteLine($"      {planet.loot[0]}            {planet.loot[1]}           {planet.loot[2]}              {planet.loot[3]}              {planet.loot[4]}");
             Console.WriteLine();
 
-            Console.WriteLine(" To SELL:\n Politicians: Press 1.\n Space dogs: Press 2.\n Chemical X: Press 3.\n Light Year Smoothies: Press 4.\n To GO BACK: Press 5.");
+            Console.WriteLine(" To SELL:\n Politicians: Press 1.\n Space dogs: Press 2.\n Chemical X: Press 3.\n Light Year Smoothies: Press 4.\n Adamantium: Press 5.\n To GO BACK: Press 6.");
 
             int input = int.Parse(Console.ReadLine());
             int CredsBack = 0;
@@ -121,7 +121,7 @@ namespace Space_Game
                 if (YN == "Y")
                 {
                     Console.Clear();
-                    GAME.HUD(player);
+                    GAME.HUD(player, ship);
                     Console.WriteLine();
                     Console.WriteLine($"You sold {SellQTY} {Items.TradingItems[index]}s for {CredsBack} creds.");
                     Console.WriteLine();
@@ -155,7 +155,7 @@ namespace Space_Game
             int SensorCost = 25000 * ship.Sensors;
 
             Console.Clear();
-            GAME.HUD(player);
+            GAME.HUD(player, ship);
 
             Console.WriteLine("Looking for an upgrade? You came to the right place.");
             Console.WriteLine();
@@ -180,7 +180,7 @@ namespace Space_Game
                     if (YN == "Y")
                     {
                         Console.Clear();
-                        GAME.HUD(player);
+                        GAME.HUD(player, ship);
 
                         player.Creds -= WarpEngineCost;
                         ship.WarpSpeed += ship.WarpSpeed;

@@ -37,15 +37,15 @@ namespace Space_Game
             Double Distance = Math.Sqrt(xFinal + yFinal);
             Distance = Math.Round(Distance, 2);
 
-            Console.WriteLine("It will take you " + Distance + " Light Years to reach this planet.");
+            Console.WriteLine("The distance to your desitnation is " + Distance + " Light Years away.");
             return Distance; // compared to 1 LY
         }
 
-        public double MeasuredTime(double distance, double speed)
+        public double MeasuredTime(double distance, double speed, Ship ship)
         {
             double Time = distance / speed;
             Time = Math.Round(Time, 2);
-            Console.WriteLine("You will age " + Time + " years upon arrival.");
+            Console.WriteLine($"At warpspeed {ship.WarpSpeed} you will have aged " + Time + " years upon arrival.");
             return Time;
         }
 

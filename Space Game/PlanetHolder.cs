@@ -14,5 +14,6 @@ namespace Space_Game
         public static Planet Pluto = new Planet("Pluto", 1, .06, .06, new[] { 150, 25, 1000, 3500 });
         public static Planet PlanetX = new Planet("Planet X", 2, 1.5, 1.5, new[] { 500, 250, 125, 2500 });
         public static Planet AlphaCentari3 = new Planet("Alpha Centeri 3", 3, 3, 3,  new[] { 1000, 500, 750, 500 });
+        public static Planet Gliese7 = new Planet("Gliese 7", 4, 14.2, 14.1, new[] { 5000, 1500, 2500, 10000 });
     }
 }
