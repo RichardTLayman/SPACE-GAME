@@ -12,6 +12,7 @@ namespace Space_Game
         public Ship MyShip = new Ship();
         Calculations Calc = new Calculations();
         public static Items Shopping = new Items();
+        RandomEvents TravelTime = new RandomEvents();
 
         static bool Run = true;
         static bool BadMoneyEnd = false;
@@ -193,6 +194,7 @@ namespace Space_Game
 
             if (YNinput == "Y")
             {
+                TravelTime.TravelEvent(Created, MyShip);
                 Console.WriteLine("You have arrive at " + Created.planet.PlanetName + ".");
                 Created.CharAge += Aged;
                 Created.x = x;
@@ -261,6 +263,11 @@ namespace Space_Game
             if (Created.Creds < 0)
             {
                 Created.Creds = 0;
+            }
+
+            if (Created.CharAge <20)
+            {
+                Created.CharAge = 20;
             }
 
             Console.WriteLine();
