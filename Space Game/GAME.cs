@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Space_Game
 {
@@ -23,6 +24,7 @@ namespace Space_Game
         public void StartGame()
         {
             GameTitle();
+            GameStory();
             CharacterCreation();
             HUD(Created, MyShip);
 
@@ -36,8 +38,9 @@ namespace Space_Game
         void GameTitle()
         {
             string Title = @" 
-
- _______  _______  _______  _______  _______    _______  _______  _______  _______ 
+       *                      *                 *                 *
+                   *                  *    *
+_______  _______  _______  _______  _______    _______  _______  _______  _______ 
 (  ____ \(  ____ )(  ___  )(  ____ \(  ____ \  (  ____ \(  ___  )(       )(  ____ \
 | (    \/| (    )|| (   ) || (    \/| (    \/  | (    \/| (   ) || () () || (    \/
 | (_____ | (____)|| (___) || |      | (__      | |      | (___) || || || || (__    
@@ -45,8 +48,9 @@ namespace Space_Game
       ) || (      | (   ) || |      | (        | | \_  )| (   ) || |   | || (      
 /\____) || )      | )   ( || (____/\| (____/\  | (___) || )   ( || )   ( || (____/\
 \_______)|/       |/     \|(_______/(_______/  (_______)|/     \||/     \|(_______/
-                                                                                   
 
+*                   *                      *                          *              
+*                             *   *                             *  
 ";
             Console.Title = "SPACE GAME";
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -56,6 +60,33 @@ namespace Space_Game
             Console.ReadKey();
             Console.Beep();
             Console.Clear();
+        }
+
+        void GameStory()
+        {
+            Console.WriteLine("You awake with a yelp. You remember.....");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("The pirates?! Somehow you are alive.");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("You quickly check your log book and security systems.... ");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("Drat! Your merchandise is gone...... At least they left you alive.");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("Reaching under your mattress, you rejoice to find your lucky day stash still intact.");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("It's not much, but it's a start to leave this dangerous smuggling life.");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("Time to get back in the game and hopefully finally retire someday.");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("You bring up the main terminal and it asked you for your credentials:");
+            Console.ReadKey();
         }
 
         void CharacterCreation()
