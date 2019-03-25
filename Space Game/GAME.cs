@@ -85,7 +85,8 @@ _______  _______  _______  _______  _______    _______  _______  _______  ______
             Console.WriteLine("Time to get back in the game and hopefully finally retire someday.");
             Thread.Sleep(1000);
             Console.WriteLine();
-            Console.WriteLine("You bring up the main terminal and it asked you for your credentials:");
+            Console.WriteLine("You bring up the main terminal and it asks you for your credentials:");
+            Console.WriteLine();
             Console.ReadKey();
         }
 
